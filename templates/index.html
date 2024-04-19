@@ -5,6 +5,23 @@
     <title>index</title>
 </head>
 <body>
-    Hello world hihi
+    <h1>Données de Jisho pour '日本語'</h1>
+    {% for item in data.data %}
+        <h2>{{ item.slug }}</h2>
+        <p>Common: {{ item.is_common }}</p>
+        <p>Tags: {{ item.tags|join:", " }}</p>
+        <h3>Japanese readings:</h3>
+        <ul>
+        {% for reading in item.japanese %}
+            <li>{{ reading.word }} ({{ reading.reading }})</li>
+        {% endfor %}
+        </ul>
+        <h3>English definitions:</h3>
+        <ul>
+        {% for sense in item.senses %}
+            <li>{{ sense.english_definitions|join:", " }}</li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
 </body>
 </html>
